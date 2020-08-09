@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}View{% endblock %}
+
+{% block menu %}
+    <li><a href="{% url 'issue_update' issue.pk %}" class="text-uppercase text-decoration-none">Update</a></li>
+    <li><a href="{% url 'issue_delete' issue.pk %}" class="text-uppercase text-decoration-none">Delete</a></li>
+{% endblock %}
+
+{% block content %}
+    <h1 class="d-flex justify-content-center amatic-text text-info">{{ issue.title }}</h1>
+    <h5 class="pre d-flex justify-content-center text-info">{{ issue.description }}</h5>
+    <div class="text-success">
+        <p class="d-flex justify-content-end"><span class="text-info">Type: </span>{{ issue.type.type }}</p>
+        <p class="d-flex justify-content-end"><span class="text-info">Status: </span>{{ issue.status.status }}</p>
+        <p class="d-flex justify-content-end"><span class="text-info">Created at: </span>{{ issue.create_at|date:"d.m.Y" }}</p>
+    </div>
+
+{% endblock %}

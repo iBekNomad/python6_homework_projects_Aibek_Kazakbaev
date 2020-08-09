@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete{% endblock %}
+
+{% block menu %}
+    <li><a href="{% url 'issue_view' issue.pk %}" class="text-uppercase text-decoration-none">cancel</a></li>
+{% endblock %}
+
+{% block content %}
+    <h2 class="d-flex justify-content-center amatic-text text-info">Вы уверены, что хотите удалить задачу </h2>
+    <h1 class="d-flex justify-content-center amatic-text text-success">"{{ issue.title }}"?</h1>
+    <p class="d-flex justify-content-center text-info">{{ issue.type.type}} | {{ issue.status.status }}</p>
+    <form action="{% url "issue_delete" issue.pk %}" method="post">
+        {% csrf_token %}
+        <div class="d-flex justify-content-center">
+            <p class="mr-5"><input type="submit" value="YES" class="btn btn btn-info"></p>
+            <p><a href="{% url "issue_view" issue.pk%}" class="btn btn btn-info text-uppercase">no</a> </p>
+        </div>
+    </form>
+    <h3 class="d-flex justify-content-center text-success">Content: </h3>
+    <p class="d-flex justify-content-center text-success">{{ issue.description }}</p>
+{% endblock %}
