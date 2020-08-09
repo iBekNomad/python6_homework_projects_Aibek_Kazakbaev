@@ -1,0 +1,104 @@
+[
+{
+  "model": "webapp.type",
+  "pk": 1,
+  "fields": {
+    "type": "Task"
+  }
+},
+{
+  "model": "webapp.type",
+  "pk": 2,
+  "fields": {
+    "type": "Bug"
+  }
+},
+{
+  "model": "webapp.type",
+  "pk": 3,
+  "fields": {
+    "type": "Enhancement"
+  }
+},
+{
+  "model": "webapp.status",
+  "pk": 1,
+  "fields": {
+    "status": "New"
+  }
+},
+{
+  "model": "webapp.status",
+  "pk": 2,
+  "fields": {
+    "status": "In Progress"
+  }
+},
+{
+  "model": "webapp.status",
+  "pk": 3,
+  "fields": {
+    "status": "Done"
+  }
+},
+{
+  "model": "webapp.issue",
+  "pk": 1,
+  "fields": {
+    "title": "Make a dinner",
+    "description": "Cook Kazan Kebab with lamb meat.",
+    "status": 1,
+    "create_at": "2020-08-09T15:00:43.729Z",
+    "updated_at": "2020-08-09T15:30:55.046Z",
+    "type": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.issue",
+  "pk": 2,
+  "fields": {
+    "title": "run 100 km",
+    "description": "Every day run 5-10 km in one month",
+    "status": 2,
+    "create_at": "2020-08-09T15:32:08.563Z",
+    "updated_at": "2020-08-09T15:32:08.563Z",
+    "type": [
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.issue",
+  "pk": 3,
+  "fields": {
+    "title": "Finish The Witcher book",
+    "description": "Read last 3 series of book",
+    "status": 2,
+    "create_at": "2020-08-09T15:44:57.878Z",
+    "updated_at": "2020-08-09T15:45:54.867Z",
+    "type": [
+      1
+    ]
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$150000$GPTslnqCsCl4$uO2cci93A8BIq9+VZ1/pz9qUZl+1sLCAizNTBDjsNuk=",
+    "last_login": "2020-08-09T16:04:33.924Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin@mail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2020-08-09T14:42:29.204Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
