@@ -7,12 +7,4 @@ class IssueForm(forms.Form):
     description = forms.CharField(max_length=2000, required=True, label="Description",
                                   widget=forms.Textarea)
     status = forms.ModelChoiceField(queryset=Status.objects.all(), required=True, initial='New', label='Status')
-    type = forms.ModelChoiceField(queryset=Type.objects.all(), required=True, label='Type')
-
-
-class IssueStatusForm(forms.Form):
-    status = forms.CharField(max_length=40, required=True, label='Status')
-
-
-class IssueTypeForm(forms.Form):
-    type = forms.CharField(max_length=40, required=True, label='Type')
+    type = forms.ModelMultipleChoiceField(queryset=Type.objects.all(), required=True, label='Type')

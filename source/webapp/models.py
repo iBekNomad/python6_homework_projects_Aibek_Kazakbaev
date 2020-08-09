@@ -20,7 +20,7 @@ class Issue(models.Model):
     description = models.CharField(max_length=2000, null=True, blank=True, verbose_name='Description')
     status = models.ForeignKey('webapp.Status', related_name='issues_statuses', on_delete=models.PROTECT,
                                verbose_name='Status')
-    type = models.ForeignKey('webapp.Type', related_name='issues_types', on_delete=models.PROTECT, verbose_name='Type')
+    type = models.ManyToManyField('webapp.Type', related_name='issues_types', blank=True, verbose_name='Type')
     create_at = models.DateTimeField(auto_now_add=True, verbose_name='Create date')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Updated date')
 
