@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinLengthValidator
 
 
 class Type(models.Model):
@@ -17,8 +18,10 @@ class Status(models.Model):
 
 class Issue(models.Model):
     title = models.CharField(max_length=200, null=False, blank=False, verbose_name='Title')
-    description = models.CharField(max_length=2000, null=True, blank=True, verbose_name='Description')
-    status = models.ForeignKey('webapp.Status', related_name='issues_statuses', on_delete=models.PROTECT,
+    description = models.CharField(max_length=2000, null=True, blank=True, verbose_name='Description',
+                                   validators=[MinLengthValidator(25)])
+    status = models.ForeignKey('webapp.Status', related_name='issues_statuses',
+                               default=Status.objects.filter(status='New'), on_delete=models.PROTECT,
                                verbose_name='Status')
     type = models.ManyToManyField('webapp.Type', related_name='issues_types', blank=True, verbose_name='Type')
     create_at = models.DateTimeField(auto_now_add=True, verbose_name='Create date')

@@ -32,13 +32,7 @@ class IssueCreateView(FormView):
     form_class = IssueForm
 
     def form_valid(self, form):
-        data = {}
-        type = form.cleaned_data.pop('type')
-        for key, value in form.cleaned_data.items():
-            if value is not None:
-                data[key] = value
-        self.issue = Issue.objects.create(**data)
-        self.issue.type.set(type)
+        self.issue = form.save()
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -58,20 +52,14 @@ class IssueUpdateView(FormView):
         context['issue'] = self.issue
         return context
 
-    def get_initial(self):
-        initial = {}
-        for key in 'title', 'description', 'status', 'type':
-            initial[key] = getattr(self.issue, key)
-        initial['type'] = self.issue.type.all()
-        return initial
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs.pop('initial')
+        kwargs['instance'] = self.issue
+        return kwargs
 
     def form_valid(self, form):
-        type = form.cleaned_data.pop('type')
-        for key, value in form.cleaned_data.items():
-            if value is not None:
-                setattr(self.issue, key, value)
-        self.issue.save()
-        self.issue.type.set(type)
+        self.issue = form.save()
         return super().form_valid(form)
 
     def get_success_url(self):

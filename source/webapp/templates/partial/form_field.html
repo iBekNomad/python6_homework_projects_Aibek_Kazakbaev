@@ -6,7 +6,9 @@
     {% endif %}
     {{ field.label }}:
 </label><br/>
+
 {{ field|add_class:'form-input bg-info text-light'|add_error_class:'form-error' }}<br/>
+
 {% for error in field.errors %}
     <p class="error">{{ error }}</p>
 {% endfor %}
