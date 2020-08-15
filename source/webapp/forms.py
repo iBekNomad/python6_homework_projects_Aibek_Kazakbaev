@@ -25,8 +25,12 @@ class IssueForm(forms.ModelForm):
         errors = []
         title = cleaned_data.get('title')
         description = cleaned_data.get('description')
-        if title == description:
-            errors.append(ValidationError('Text of the description should not duplicate title!'))
+        if title > description:
+            errors.append(ValidationError('Text of the title should not be longer than the description!'))
         if errors:
             raise ValidationError(errors)
         return cleaned_data
+
+
+class SimpleSearchForm(forms.Form):
+    search = forms.CharField(max_length=100, required=False, label="Search")

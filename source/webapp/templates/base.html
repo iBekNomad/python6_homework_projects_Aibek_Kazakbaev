@@ -20,7 +20,7 @@
             <ul class="menu">
                 <li><a href="{% url 'index' %}" class="text-uppercase text-decoration-none">Home</a></li>
                 <li><a href="{% url 'issue_create' %}" class="text-uppercase text-decoration-none">Add new issue</a></li>
-                {% block menu %}{% endblock %}
+                <li>{% block menu %}{% endblock %}</li>
             </ul>
         </div>
     </nav>
