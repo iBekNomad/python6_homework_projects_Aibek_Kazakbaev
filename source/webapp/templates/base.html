@@ -21,6 +21,7 @@
                 <li><a href="{% url 'index' %}" class="text-uppercase text-decoration-none">Home</a></li>
                 <li><a href="{% url 'issue_create' %}" class="text-uppercase text-decoration-none">Add new issue</a></li>
                 <li>{% block menu %}{% endblock %}</li>
+                <li class="d-inline-block">{% include 'partial/simple_search.html' %}</li>
             </ul>
         </div>
     </nav>
