@@ -47,9 +47,9 @@
   "fields": {
     "title": "Make a dinner",
     "description": "Cook Kazan Kebab with lamb meat.",
-    "status": 1,
+    "status": 3,
     "create_at": "2020-08-09T15:00:43.729Z",
-    "updated_at": "2020-08-09T15:30:55.046Z",
+    "updated_at": "2020-08-15T09:59:49.911Z",
     "type": [
       1
     ]
@@ -63,8 +63,9 @@
     "description": "Every day run 5-10 km in one month",
     "status": 2,
     "create_at": "2020-08-09T15:32:08.563Z",
-    "updated_at": "2020-08-09T15:32:08.563Z",
+    "updated_at": "2020-08-15T10:04:25.993Z",
     "type": [
+      1,
       3
     ]
   }
@@ -75,11 +76,41 @@
   "fields": {
     "title": "Finish The Witcher book",
     "description": "Read last 3 series of book",
-    "status": 2,
+    "status": 3,
     "create_at": "2020-08-09T15:44:57.878Z",
-    "updated_at": "2020-08-09T15:45:54.867Z",
+    "updated_at": "2020-08-15T09:23:27.570Z",
     "type": [
       1
+    ]
+  }
+},
+{
+  "model": "webapp.issue",
+  "pk": 7,
+  "fields": {
+    "title": "New Post",
+    "description": "Hey! Whats up!!! What's going on?",
+    "status": 3,
+    "create_at": "2020-08-11T14:18:10.210Z",
+    "updated_at": "2020-08-15T10:19:03.161Z",
+    "type": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.issue",
+  "pk": 10,
+  "fields": {
+    "title": "Fix bug",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid ea harum inventore nostrum voluptatum? Ad, aliquid assumenda beatae commodi distinctio, eligendi inventore laboriosam obcaecati omnis, perferendis quasi repudiandae rerum voluptatum?",
+    "status": 2,
+    "create_at": "2020-08-15T10:14:27.133Z",
+    "updated_at": "2020-08-15T10:14:27.133Z",
+    "type": [
+      2,
+      3
     ]
   }
 },
