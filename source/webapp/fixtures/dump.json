@@ -104,13 +104,42 @@
   "pk": 10,
   "fields": {
     "title": "Fix bug",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid ea harum inventore nostrum voluptatum? Ad, aliquid assumenda beatae commodi distinctio, eligendi inventore laboriosam obcaecati omnis, perferendis quasi repudiandae rerum voluptatum?",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing\r\nelit. Aliquid ea harum inventore nostrum voluptatum \r\nAd, aliquid assumenda beatae commodi distinctio.",
     "status": 2,
     "create_at": "2020-08-15T10:14:27.133Z",
-    "updated_at": "2020-08-15T10:14:27.133Z",
+    "updated_at": "2020-08-15T12:45:30.512Z",
     "type": [
       2,
       3
+    ]
+  }
+},
+{
+  "model": "webapp.issue",
+  "pk": 11,
+  "fields": {
+    "title": "Nice day, nice issue, nice homework",
+    "description": "Nice day, nice issue, nice homework",
+    "status": 3,
+    "create_at": "2020-08-15T12:15:31.857Z",
+    "updated_at": "2020-08-15T12:15:31.857Z",
+    "type": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.issue",
+  "pk": 15,
+  "fields": {
+    "title": "New Post",
+    "description": "asdoiashdoiashdiahsdiasdpjas[pd\\aso[dkasd\r\n'askd;asd;lsa;dkas;ldkas;lkdaskd;askdpoajsfpo",
+    "status": 2,
+    "create_at": "2020-08-15T13:38:13.072Z",
+    "updated_at": "2020-08-15T13:38:13.072Z",
+    "type": [
+      2
     ]
   }
 },

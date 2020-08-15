@@ -19,6 +19,7 @@ class IssueForm(forms.ModelForm):
     class Meta:
         model = Issue
         fields = ['title', 'description', 'status', 'type']
+        widgets = {'type': forms.CheckboxSelectMultiple}
 
     def clean(self):
         cleaned_data = super().clean()
