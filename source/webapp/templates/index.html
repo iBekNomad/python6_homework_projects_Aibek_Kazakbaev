@@ -12,7 +12,7 @@
                             href="{% url "issue_view" issue.pk %}">{{ issue.title }}</a>
                     </div>
                     <div class="card-body text-success">
-                        <p class="card-text text-info">Type: {{ issue.type.type }} | Status: {{ issue.status.status }}</p>
+                        <p class="card-text text-info">Type: {% for t in issue.type.all %}{{ t.type }}{% if not forloop.last %}, {% endif %}{% endfor %} | Status: {{ issue.status.status }}</p>
                         <p class="card-text">{{ issue.description }}</p>
                     </div>
                     <div class="card-footer bg-transparent border-info">
