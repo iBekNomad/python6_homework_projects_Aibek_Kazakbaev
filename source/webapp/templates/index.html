@@ -2,9 +2,9 @@
 
 {% block title %}Main{% endblock %}
 
-{#{% block menu %}#}
-{#    #}
-{#{% endblock %}#}
+{% block menu %}
+    <li class="d-inline-block">{% include 'partial/simple_search.html' %}</li>
+{% endblock %}
 
 {% block content %}
     <h1 class="text-uppercase text-info amatic-text">To do list</h1>

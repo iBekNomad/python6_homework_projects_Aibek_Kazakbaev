@@ -1,7 +1,7 @@
 <form class="form-inline my-2 my-lg-0" action="" method="GET">
-    <label class="text-uppercase" for="{{ form.search.id_for_label }}">{{ form.search.label }}:</label>
+    <label class="text-uppercase ml-3" for="{{ form.search.id_for_label }}">{{ form.search.label }}:</label>
     {{ form.search }}
-    <input class="btn btn-sm btn-outline-light" type="submit" value="Search">
+    <input class="btn btn-sm btn-outline-light ml-3" type="submit" value="Search">
     {% for error in form.search.errors %}
         <p class="form-error">{{ error }}</p>
     {% endfor %}

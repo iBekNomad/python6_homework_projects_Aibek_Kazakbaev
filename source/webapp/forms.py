@@ -26,7 +26,7 @@ class IssueForm(forms.ModelForm):
         errors = []
         title = cleaned_data.get('title')
         description = cleaned_data.get('description')
-        if title > description:
+        if len(title) > len(description):
             errors.append(ValidationError('Text of the title should not be longer than the description!'))
         if errors:
             raise ValidationError(errors)
