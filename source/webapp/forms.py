@@ -1,5 +1,5 @@
 from django import forms
-from .models import Issue
+from .models import Issue, Project
 from django.core.exceptions import ValidationError
 
 RESTRICTED_SYMBOLS = ['{', '}', '/', '^', '|']
@@ -9,6 +9,10 @@ def restricted_symbols(string):
     for i in RESTRICTED_SYMBOLS:
         if i in string:
             raise ValidationError(f'"{i}" should not include title!')
+
+
+class XDatepickerWidget(forms.TextInput):
+    template_name = 'widgets/xdatepicker_widget.html'
 
 
 class IssueForm(forms.ModelForm):
@@ -35,3 +39,14 @@ class IssueForm(forms.ModelForm):
 
 class SimpleSearchForm(forms.Form):
     search = forms.CharField(max_length=100, required=False, label="Search")
+
+
+class ProjectForm(forms.ModelForm):
+    start_date = forms.DateField(required=True, label='Start Date', input_formats=['%Y-%m-%d'],
+                                 widget=XDatepickerWidget)
+    end_date = forms.DateField(required=False, label='End Date', input_formats=['%Y-%m-%d'],
+                               widget=XDatepickerWidget)
+
+    class Meta:
+        model = Project
+        fields = ['name', 'description', 'start_date', 'end_date']

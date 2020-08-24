@@ -9,6 +9,7 @@
     <title>{% block title %}My Site{% endblock %}</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/all.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
@@ -17,9 +18,9 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-info fixed-top">
         <div class="container">
-            <ul class="menu">
+            <ul class="menu w-100">
                 <li><a href="{% url 'index' %}" class="text-uppercase text-decoration-none">Home</a></li>
-                <li><a href="{% url 'issue_create' %}" class="text-uppercase text-decoration-none">Add new issue</a></li>
+                <li><a href="{% url 'project_index' %}" class="text-uppercase text-decoration-none">Projects</a></li>
                 <li>{% block menu %}{% endblock %}</li>
             </ul>
         </div>

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Create{% endblock %}
+
+{% block content %}
+    <h1 class="amatic-text text-info">Create project</h1>
+
+    {% url "project_create" as action_url %}
+    {% include 'partial/form.html' with action_url=action_url form_method='post' %}
+
+{% endblock %}

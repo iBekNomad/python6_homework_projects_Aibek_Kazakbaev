@@ -1,10 +1,10 @@
 from django.db.models import Q
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import redirect, get_object_or_404
 from django.utils.http import urlencode
-from django.views.generic import DetailView, TemplateView, FormView, ListView
+from django.views.generic import DetailView, TemplateView, FormView, ListView, CreateView
 from django.urls import reverse
 
-from webapp.models import Issue
+from webapp.models import Issue, Project
 from webapp.forms import IssueForm, SimpleSearchForm
 
 
@@ -53,16 +53,20 @@ class IssueView(DetailView):
         return context
 
 
-class IssueCreateView(FormView):
+class IssueCreateView(CreateView):
     template_name = 'issue/issue_create.html'
     form_class = IssueForm
+    model = Issue
+
+    # def get_success_url(self):
+    #     return reverse('issue_view', kwargs={'pk': self.object.pk})
 
     def form_valid(self, form):
-        self.issue = form.save()
-        return super().form_valid(form)
-
-    def get_success_url(self):
-        return reverse('issue_view', kwargs={'pk': self.issue.pk})
+        project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
+        issue = form.save(commit=False)
+        issue.project = project
+        issue.save()
+        return redirect('project_view', pk=project.pk)
 
 
 class IssueUpdateView(FormView):
