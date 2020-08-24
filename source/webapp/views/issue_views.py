@@ -5,7 +5,7 @@ from django.views.generic import View, TemplateView, FormView, ListView
 from django.urls import reverse
 
 from webapp.models import Issue
-from .forms import IssueForm, SimpleSearchForm
+from webapp.forms import IssueForm, SimpleSearchForm
 
 
 class IndexView(ListView):
