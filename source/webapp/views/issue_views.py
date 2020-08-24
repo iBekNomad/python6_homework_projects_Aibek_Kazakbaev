@@ -1,7 +1,7 @@
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.http import urlencode
-from django.views.generic import View, TemplateView, FormView, ListView
+from django.views.generic import DetailView, TemplateView, FormView, ListView
 from django.urls import reverse
 
 from webapp.models import Issue
@@ -44,16 +44,12 @@ class IndexView(ListView):
         return None
 
 
-class IssueView(TemplateView):
+class IssueView(DetailView):
     template_name = 'issue/issue_view.html'
+    model = Issue
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
-        pk = self.kwargs.get('pk')
-        issue = get_object_or_404(Issue, pk=pk)
-
-        context['issue'] = issue
         return context
 
 
