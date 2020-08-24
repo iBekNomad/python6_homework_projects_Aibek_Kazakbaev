@@ -8,18 +8,10 @@ from webapp.models import Issue
 from .forms import IssueForm, SimpleSearchForm
 
 
-# class IndexView(View):
-#     def get(self, request):
-#         data = Issue.objects.all()
-#         return render(request, 'index.html', context={
-#             'issues': data
-#         })
-
-
 class IndexView(ListView):
     context_object_name = 'issues'
     model = Issue
-    template_name = 'index.html'
+    template_name = 'issue/index.html'
     ordering = ['-create_at']
     paginate_by = 10
     paginate_orphans = 1
@@ -53,7 +45,7 @@ class IndexView(ListView):
 
 
 class IssueView(TemplateView):
-    template_name = 'issue_view.html'
+    template_name = 'issue/issue_view.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -66,7 +58,7 @@ class IssueView(TemplateView):
 
 
 class IssueCreateView(FormView):
-    template_name = 'issue_create.html'
+    template_name = 'issue/issue_create.html'
     form_class = IssueForm
 
     def form_valid(self, form):
@@ -78,7 +70,7 @@ class IssueCreateView(FormView):
 
 
 class IssueUpdateView(FormView):
-    template_name = 'issue_update.html'
+    template_name = 'issue/issue_update.html'
     form_class = IssueForm
 
     def dispatch(self, request, *args, **kwargs):
@@ -109,7 +101,7 @@ class IssueUpdateView(FormView):
 
 
 class IssueDeleteView(TemplateView):
-    template_name = 'issue_delete.html'
+    template_name = 'issue/issue_delete.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
