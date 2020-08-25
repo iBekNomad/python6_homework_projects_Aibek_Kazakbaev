@@ -13,7 +13,7 @@ class IndexView(ListView):
     model = Issue
     template_name = 'issue/index.html'
     ordering = ['-create_at']
-    paginate_by = 10
+    paginate_by = 9
     paginate_orphans = 1
 
     def get(self, request, *args, **kwargs):
