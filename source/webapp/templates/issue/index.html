@@ -7,17 +7,24 @@
 {% endblock %}
 
 {% block content %}
-    <h1 class="text-uppercase text-info amatic-text">To do list</h1>
+    <h1 class="text-uppercase text-info amatic-text d-flex justify-content-center font-weight-bold">To do list</h1>
+    {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}
     <div class="row row-cols-1 row-cols-md-3">
         {% for issue in issues %}
             <div class="col mb-4">
                 <div class="card border-info mb-3" style="max-width: 18rem;">
-                    <div class="card-header border-info a-text"><a class="text-success text-uppercase text-decoration-none"
+                    <div class="card-header border-info a-text"><a
+                            class="text-success text-uppercase text-decoration-none"
                             href="{% url "issue_view" issue.pk %}">{{ issue.title }}</a>
                     </div>
                     <div class="card-body text-success">
-                        <p class="card-text text-info">Type: {% for t in issue.type.all %}{{ t.type }}{% if not forloop.last %}, {% endif %}{% endfor %} | Status: {{ issue.status.status }}</p>
+                        <p class="card-text text-info">Type:
+                            {% for t in issue.type.all %}{{ t.type }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                            | Status: {{ issue.status.status }}</p>
                         <p class="card-text">{{ issue.description }}</p>
+                        <p class="text-info">Project: {{ issue.project.name }}</p>
                     </div>
                     <div class="card-footer bg-transparent border-info">
                         <p class="text-secondary">Created date: {{ issue.create_at|date:"d.m.Y" }}</p>
@@ -30,4 +37,7 @@
             </div>
         {% endfor %}
     </div>
+    {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}
 {% endblock %}
