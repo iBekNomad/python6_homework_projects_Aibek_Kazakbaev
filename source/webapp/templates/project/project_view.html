@@ -3,15 +3,17 @@
 {% block title %}View{% endblock %}
 
 {% block menu %}
-    <li><a href="{% url 'project_update' project.pk %}" class="text-uppercase text-decoration-none">Update Project</a></li>
-    <li><a href="{% url 'project_delete' project.pk %}" class="text-uppercase text-decoration-none">Delete Project</a></li>
+    <li><a href="{% url 'project_update' project.pk %}" class="text-uppercase text-decoration-none">Update Project</a>
+    </li>
+    <li><a href="{% url 'project_delete' project.pk %}" class="text-uppercase text-decoration-none">Delete Project</a>
+    </li>
     <li><a href="{% url 'issue_create' project.pk %}" class="text-uppercase text-decoration-none">Add new issue</a></li>
 {% endblock %}
 
 
 {% block content %}
     <div class="text-success">
-        <h1 class="d-flex justify-content-center amatic-text text-info">{{ project.name }}</h1>
+        <h1 class="d-flex justify-content-center amatic-text text-info font-weight-bold">{{ project.name }}</h1>
         <h5 class="pre text-info">{{ project.description }}</h5>
         <p class="d-flex justify-content-end"><span
                 class="text-info">Start Date: </span>{{ project.start_date|date:"d.m.Y" }}</p>
@@ -22,15 +24,18 @@
         {% include 'partial/pagination.html' %}
     {% endif %}
     {% for issue in issues %}
-        <div class="d-flex justify-content-center card-header border-info a-text">
-            <a class="text-success text-uppercase text-decoration-none"
-               href="{% url "issue_view" issue.pk %}">{{ issue.title }}</a>
-        </div>
-        <div class="card-footer bg-transparent border-info">
-            <p class="d-flex justify-content-center text-secondary">Created date: {{ issue.create_at|date:"d.m.Y" }}</p>
-            <div class="d-flex justify-content-center">
-                <p><a href="{% url "issue_update" issue.pk %}" class="btn btn-sm btn-info ml-2">Update</a></p>
-                <p><a href="{% url "issue_delete" issue.pk %}" class="btn btn-sm btn-info ml-2">Delete</a></p>
+        <div class="card border-info mb-3">
+            <div class="d-flex justify-content-center card-header border-info a-text">
+                <a class="text-success text-uppercase text-decoration-none"
+                   href="{% url "issue_view" issue.pk %}">{{ issue.title }}</a>
+            </div>
+            <div class="card-footer bg-transparent border-info">
+                <p class="d-flex justify-content-center text-secondary">Created
+                    date: {{ issue.create_at|date:"d.m.Y" }}</p>
+                <div class="d-flex justify-content-center">
+                    <p><a href="{% url "issue_update" issue.pk %}" class="btn btn-sm btn-info ml-2">Update</a></p>
+                    <p><a href="{% url "issue_delete" issue.pk %}" class="btn btn-sm btn-info ml-2">Delete</a></p>
+                </div>
             </div>
         </div>
     {% endfor %}

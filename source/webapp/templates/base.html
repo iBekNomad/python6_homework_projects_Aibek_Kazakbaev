@@ -17,8 +17,8 @@
     {% block styles %}{% endblock %}
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-info fixed-top">
-    <div class="container">
+<nav class="navbar navbar-expand-md navbar-dark bg-info sticky-top">
+    <div class="container-sm">
         <ul class="menu w-100">
             <li><a href="{% url 'index' %}" class="text-uppercase text-decoration-none">Home</a></li>
             <li><a href="{% url 'project_index' %}" class="text-uppercase text-decoration-none">Projects</a></li>
@@ -26,7 +26,7 @@
         </ul>
     </div>
 </nav>
-<div class="container">
+<div class="container-sm">
     {% block content %}{% endblock %}
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

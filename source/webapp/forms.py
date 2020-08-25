@@ -1,5 +1,5 @@
 from django import forms
-from .models import Issue, Project
+from .models import Issue, Project, Status
 from django.core.exceptions import ValidationError
 
 RESTRICTED_SYMBOLS = ['{', '}', '/', '^', '|']
