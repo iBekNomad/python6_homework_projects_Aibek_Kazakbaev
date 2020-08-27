@@ -3,7 +3,7 @@
 {% block title %}Projects{% endblock %}
 
 {% block menu %}
-    <li><a href="{% url 'project_create' %}" class="text-uppercase text-decoration-none">Add new Project</a></li>
+    <li><a href="{% url 'project_create' %}" class="text-uppercase text-decoration-none px-md-3 py-md-2">Add new Project</a></li>
     <li class="d-inline-block float-right">{% include 'partial/simple_search.html' %}</li>
 {% endblock %}
 
@@ -13,7 +13,8 @@
         {% for project in projects %}
             <div class="col mb-4">
                 <div class="card border-info mb-3" style="max-width: 18rem;">
-                    <div class="card-header border-info a-text"><a class="text-success text-uppercase text-decoration-none"
+                    <div class="card-header border-info a-text"><a
+                            class="font-weight-bold text-success text-uppercase text-decoration-none"
                             href="{% url "project_view" project.pk %}">{{ project.name }}</a>
                     </div>
                     <div class="card-body text-success">
@@ -22,10 +23,6 @@
                     <div class="card-footer bg-transparent border-info">
                         <p class="text-secondary">Start date: {{ project.start_date|date:"d.m.Y" }}</p>
                         <p class="text-secondary">End date: {{ project.end_date|date:"d.m.Y" }}</p>
-{#                        <div class="d-flex justify-content-around">#}
-{#                            <p><a href="{% url "project_update" project.pk %}" class="btn btn-sm btn-info">Update</a></p>#}
-{#                            <p><a href="{% url "project_delete" project.pk %}" class="btn btn-sm btn-info">Delete</a></p>#}
-{#                        </div>#}
                     </div>
                 </div>
             </div>
