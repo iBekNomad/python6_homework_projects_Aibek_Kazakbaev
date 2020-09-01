@@ -13,6 +13,8 @@ class ProjectIndexView(ListView):
     model = Project
     template_name = 'project/project_index.html'
     ordering = ['-start_date']
+    paginate_by = 3
+    paginate_orphans = 1
 
     def get(self, request, *args, **kwargs):
         self.form = self.get_search_form()

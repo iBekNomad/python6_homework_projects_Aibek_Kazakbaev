@@ -33,8 +33,10 @@
                 <p class="d-flex justify-content-center text-secondary">Created
                     date: {{ issue.create_at|date:"d.m.Y" }}</p>
                 <div class="d-flex justify-content-center">
-                    <p><a href="{% url "issue_update" issue.pk %}" class="btn btn-sm btn-info ml-2">Update</a></p>
-                    <p><a href="{% url "issue_delete" issue.pk %}" class="btn btn-sm btn-info ml-2">Delete</a></p>
+                    {% if request.user.is_authenticated %}
+                        <p><a href="{% url "issue_update" issue.pk %}" class="btn btn-sm btn-info ml-2">Update</a></p>
+                        <p><a href="{% url "issue_delete" issue.pk %}" class="btn btn-sm btn-info ml-2">Delete</a></p>
+                    {% endif %}
                 </div>
             </div>
         </div>

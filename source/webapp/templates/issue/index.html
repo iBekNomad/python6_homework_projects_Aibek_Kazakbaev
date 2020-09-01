@@ -29,8 +29,10 @@
                     <div class="card-footer bg-transparent border-info">
                         <p class="text-secondary">Created date: {{ issue.create_at|date:"d.m.Y" }}</p>
                         <div class="d-flex justify-content-around">
-                            <p><a href="{% url "issue_update" issue.pk %}" class="btn btn-sm btn-info">Update</a></p>
-                            <p><a href="{% url "issue_delete" issue.pk %}" class="btn btn-sm btn-info">Delete</a></p>
+                            {% if request.user.is_authenticated %}
+                                <p><a href="{% url "issue_update" issue.pk %}" class="btn btn-sm btn-info">Update</a></p>
+                                <p><a href="{% url "issue_delete" issue.pk %}" class="btn btn-sm btn-info">Delete</a></p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

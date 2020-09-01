@@ -19,6 +19,8 @@ from webapp.views import IndexView, IssueCreateView, IssueView, \
     IssueUpdateView, IssueDeleteView, ProjectIndexView, ProjectView, ProjectCreateView, ProjectUpdateView, \
     ProjectDeleteView
 
+from django.contrib.auth.views import LoginView, LogoutView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexView.as_view(), name='index'),
@@ -31,5 +33,8 @@ urlpatterns = [
     path('projects/<int:pk>/', ProjectView.as_view(), name='project_view'),
     path('projects/add/', ProjectCreateView.as_view(), name='project_create'),
     path('projects/<int:pk>/update/', ProjectUpdateView.as_view(), name='project_update'),
-    path('projects/<int:pk>/delete/', ProjectDeleteView.as_view(), name='project_delete')
+    path('projects/<int:pk>/delete/', ProjectDeleteView.as_view(), name='project_delete'),
+
+    path('accounts/login/', LoginView.as_view(), name='login'),
+    path('accounts/logout/', LogoutView.as_view(), name='logout')
 ]
