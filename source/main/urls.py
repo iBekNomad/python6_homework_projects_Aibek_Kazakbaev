@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from webapp.views import IndexView, IssueCreateView, IssueView, \
     IssueUpdateView, IssueDeleteView, ProjectIndexView, ProjectView, ProjectCreateView, ProjectUpdateView, \
     ProjectDeleteView
@@ -24,17 +24,20 @@ from django.contrib.auth.views import LoginView, LogoutView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexView.as_view(), name='index'),
-    path('issue/<int:pk>/', IssueView.as_view(), name='issue_view'),
-    path('projects/<int:pk>/issues/add/', IssueCreateView.as_view(), name='issue_create'),
-    path('issue/<int:pk>/update/', IssueUpdateView.as_view(), name='issue_update'),
-    path('issue/<int:pk>/delete/', IssueDeleteView.as_view(), name='issue_delete'),
+    path('issue/', include([
+        path('<int:pk>/', IssueView.as_view(), name='issue_view'),
+        path('<int:pk>/update/', IssueUpdateView.as_view(), name='issue_update'),
+        path('<int:pk>/delete/', IssueDeleteView.as_view(), name='issue_delete'),
+    ])),
 
-    path('projects/', ProjectIndexView.as_view(), name='project_index'),
-    path('projects/<int:pk>/', ProjectView.as_view(), name='project_view'),
-    path('projects/add/', ProjectCreateView.as_view(), name='project_create'),
-    path('projects/<int:pk>/update/', ProjectUpdateView.as_view(), name='project_update'),
-    path('projects/<int:pk>/delete/', ProjectDeleteView.as_view(), name='project_delete'),
+    path('projects/', include([
+        path('<int:pk>/issues/add/', IssueCreateView.as_view(), name='issue_create'),
+        path('', ProjectIndexView.as_view(), name='project_index'),
+        path('<int:pk>/', ProjectView.as_view(), name='project_view'),
+        path('add/', ProjectCreateView.as_view(), name='project_create'),
+        path('<int:pk>/update/', ProjectUpdateView.as_view(), name='project_update'),
+        path('<int:pk>/delete/', ProjectDeleteView.as_view(), name='project_delete'),
+    ])),
 
-    path('accounts/login/', LoginView.as_view(), name='login'),
-    path('accounts/logout/', LogoutView.as_view(), name='logout')
+    path('accounts/', include('accounts.urls'))
 ]
