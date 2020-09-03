@@ -29,9 +29,11 @@
                 {% if request.user.is_authenticated %}
                     <li><a href="{% url 'project_index' %}" class="text-uppercase text-decoration-none px-md-3 py-md-2">Projects</a></li>
                     {% block menu %}{% endblock %}
-                    <li><a href="{% url 'accounts:logout' %}" class="font-weight-bold text-uppercase">Logout</a></li>
+                    <li><a href="#" class="w-100">{{ request.user.get_full_name }}</a></li>
+                    <li><a href="{% url 'accounts:logout' %}?next={{ request.get_full_path }}">Logout</a></li>
                 {% else %}
-                    <li><a href="{% url 'accounts:login' %}" class="font-weight-bold text-uppercase">Login</a></li>
+                    <li><a href="{% url 'accounts:login' %}?next={{ request.get_full_path }}">Login</a></li>
+                    <li><a href="{% url 'accounts:create' %}?next={{ request.get_full_path }}">Sign Up</a></li>
                 {% endif %}
             </ul>
         </div>
