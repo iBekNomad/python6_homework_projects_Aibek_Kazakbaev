@@ -12,7 +12,9 @@
           rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/all.min.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css"
+          integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     {% block styles %}{% endblock %}
 </head>
@@ -25,15 +27,20 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="menu w-100 font-weight-bold navbar-nav mr-auto ml-md-5">
-                <li><a href="{% url 'index' %}" class="text-uppercase text-decoration-none px-md-3 py-md-2">Home</a></li>
+                <li><a href="{% url 'index' %}" class="text-uppercase text-decoration-none px-md-3 py-md-2">Home</a>
+                </li>
                 {% if request.user.is_authenticated %}
-                    <li><a href="{% url 'project_index' %}" class="text-uppercase text-decoration-none px-md-3 py-md-2">Projects</a></li>
+                    <li><a href="{% url 'project_index' %}" class="text-uppercase text-decoration-none px-md-3 py-md-2">Projects</a>
+                    </li>
                     {% block menu %}{% endblock %}
                     <li><a href="#" class="w-100">{{ request.user.get_full_name }}</a></li>
-                    <li><a href="{% url 'accounts:logout' %}?next={{ request.get_full_path }}">Logout</a></li>
+                    <li><a href="{% url 'accounts:logout' %}?next={{ request.get_full_path }}"
+                           class="text-uppercase text-decoration-none px-md-3 py-md-2">Logout</a></li>
                 {% else %}
-                    <li><a href="{% url 'accounts:login' %}?next={{ request.get_full_path }}">Login</a></li>
-                    <li><a href="{% url 'accounts:create' %}?next={{ request.get_full_path }}">Sign Up</a></li>
+                    <li><a href="{% url 'accounts:login' %}?next={{ request.get_full_path }}"
+                           class="text-uppercase text-decoration-none px-md-3 py-md-2">Login</a></li>
+                    <li><a href="{% url 'accounts:create' %}?next={{ request.get_full_path }}"
+                           class="text-uppercase text-decoration-none px-md-3 py-md-2">Sign Up</a></li>
                 {% endif %}
             </ul>
         </div>
@@ -45,7 +52,8 @@
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"
+        integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
