@@ -1,7 +1,9 @@
+from django.contrib.auth import get_user_model
 from django.db.models import Q
 from django.shortcuts import redirect, get_object_or_404
 from django.utils.http import urlencode
 from django.views.generic import DetailView, DeleteView, UpdateView, ListView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from django.urls import reverse, reverse_lazy
 
 from webapp.models import Issue, Project
@@ -53,10 +55,15 @@ class IssueView(DetailView):
         return context
 
 
-class IssueCreateView(CreateView):
+class IssueCreateView(PermissionRequiredMixin, CreateView):
     template_name = 'issue/issue_create.html'
     form_class = IssueForm
     model = Issue
+    permission_required = 'webapp.add_issue'
+
+    def has_permission(self):
+        project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
+        return super().has_permission() and self.request.user in project.user.all()
 
     def form_valid(self, form):
         project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
@@ -66,16 +73,26 @@ class IssueCreateView(CreateView):
         return redirect('project_view', pk=project.pk)
 
 
-class IssueUpdateView(UpdateView):
+class IssueUpdateView(PermissionRequiredMixin, UpdateView):
     model = Issue
     template_name = 'issue/issue_update.html'
     form_class = IssueForm
+    permission_required = 'webapp.change_issue'
+
+    def has_permission(self):
+        issue = self.get_object()
+        return super().has_permission() and self.request.user in issue.project.user.all()
 
     def get_success_url(self):
         return reverse('issue_view', kwargs={'pk': self.object.pk})
 
 
-class IssueDeleteView(DeleteView):
+class IssueDeleteView(PermissionRequiredMixin, DeleteView):
     template_name = 'issue/issue_delete.html'
     model = Issue
     success_url = reverse_lazy('index')
+    permission_required = 'webapp.delete_issue'
+
+    def has_permission(self):
+        issue = self.get_object()
+        return super().has_permission() and self.request.user in issue.project.user.all()

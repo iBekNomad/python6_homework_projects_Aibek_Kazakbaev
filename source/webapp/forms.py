@@ -50,3 +50,10 @@ class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ['name', 'description', 'start_date', 'end_date']
+
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ['user']
+        widgets = {'user': forms.CheckboxSelectMultiple}

@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 
 from accounts.forms import MyUserCreationForm
-from django.views.generic import CreateView
+from django.views.generic import CreateView, View
 
 
 class RegisterView(CreateView):
@@ -24,3 +24,16 @@ class RegisterView(CreateView):
         if not next:
             next_url = reverse('index')
         return next_url
+
+
+class RegisterActivateView(View):
+    def get(self, request, *args, **kwargs):
+        token = AuthToken.get_token(self.kwargs.get('token'))
+        if token:
+            if token.is_alive():
+                user = token.user
+                user.is_active = True
+                user.save()
+                login(request, user)
+            token.delete()
+        return redirect('index')

@@ -3,8 +3,12 @@
 {% block title %}View{% endblock %}
 
 {% block menu %}
-    <li><a href="{% url 'issue_update' issue.pk %}" class="text-uppercase text-decoration-none">Update</a></li>
-    <li><a href="{% url 'issue_delete' issue.pk %}" class="text-uppercase text-decoration-none">Delete</a></li>
+    {% if perms.webapp.change_issue %}
+        <li><a href="{% url 'issue_update' issue.pk %}" class="text-uppercase text-decoration-none">Update</a></li>
+    {% endif %}
+    {% if perms.webapp.delete_issue %}
+        <li><a href="{% url 'issue_delete' issue.pk %}" class="text-uppercase text-decoration-none">Delete</a></li>
+    {% endif %}
 {% endblock %}
 
 {% block content %}

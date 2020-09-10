@@ -230,18 +230,57 @@
 },
 {
   "model": "webapp.issue",
-  "pk": 23,
+  "pk": 26,
   "fields": {
-    "title": "New Post test",
-    "description": "asdpasdkaposjd0qwmd[qwmdo[asmd-omaw[odm\r\na',sd[amsdomqwdmqwpkd]paskd[askdoqwkd=kqw]pda]spkd\r\nd.qw[dk-oqwkdp[qw,d[p,qwdomqwomdpqw]d",
-    "status": 3,
-    "create_at": "2020-08-25T15:52:06.547Z",
-    "updated_at": "2020-08-25T16:03:48.005Z",
-    "project": 4,
+    "title": "Manger Test Issue",
+    "description": "Manger Test Issue\r\nManger Test Issue Manger Test Issue \r\nManger Test Issue Manger Test Issue Manger Test Issue",
+    "status": 1,
+    "create_at": "2020-09-10T10:26:13.420Z",
+    "updated_at": "2020-09-10T12:06:18.862Z",
+    "project": 12,
     "type": [
       1,
       2
     ]
+  }
+},
+{
+  "model": "webapp.issue",
+  "pk": 27,
+  "fields": {
+    "title": "Team leader Test Issue",
+    "description": "Team leader Test IssueTeam leader Test Issue Team leader Test IssueTeam leader Test IssueTeam leader Test IssueTeam leader Test Issue",
+    "status": 2,
+    "create_at": "2020-09-10T10:41:27.699Z",
+    "updated_at": "2020-09-10T10:41:27.699Z",
+    "project": 14,
+    "type": []
+  }
+},
+{
+  "model": "webapp.issue",
+  "pk": 29,
+  "fields": {
+    "title": "New Post test",
+    "description": "asdasdasdzxczxcas;kcasjcoaskd\\\r\n\r\n'asd\r\n;askd'kas'dka'sdk';aslkd'",
+    "status": 2,
+    "create_at": "2020-09-10T11:45:40.663Z",
+    "updated_at": "2020-09-10T11:45:40.663Z",
+    "project": 13,
+    "type": []
+  }
+},
+{
+  "model": "webapp.issue",
+  "pk": 31,
+  "fields": {
+    "title": "New Post manager",
+    "description": "asdaposdjashfasmvpoasjv0asjco[asjdcjaspodkpas",
+    "status": 1,
+    "create_at": "2020-09-10T12:36:51.809Z",
+    "updated_at": "2020-09-10T12:36:51.809Z",
+    "project": 15,
+    "type": []
   }
 },
 {
@@ -251,45 +290,61 @@
     "name": "test",
     "description": "test test test",
     "start_date": "2020-08-24",
-    "end_date": "2020-09-15"
+    "end_date": "2020-09-15",
+    "user": []
   }
 },
 {
   "model": "webapp.project",
-  "pk": 4,
+  "pk": 12,
   "fields": {
-    "name": "test 2",
-    "description": "test2 test2",
-    "start_date": "2020-09-26",
-    "end_date": "2020-10-10"
+    "name": "Manager Test project",
+    "description": "test test Man",
+    "start_date": "2020-09-10",
+    "end_date": "2020-09-17",
+    "user": [
+      10
+    ]
   }
 },
 {
   "model": "webapp.project",
-  "pk": 5,
+  "pk": 13,
   "fields": {
-    "name": "Test 3",
-    "description": "asdasdqwdqasddasd",
-    "start_date": "2020-08-25",
-    "end_date": "2020-08-28"
+    "name": "Dev test",
+    "description": "dev dev",
+    "start_date": "2020-09-17",
+    "end_date": "2020-09-26",
+    "user": [
+      11
+    ]
   }
 },
 {
-  "model": "auth.user",
-  "pk": 1,
+  "model": "webapp.project",
+  "pk": 14,
   "fields": {
-    "password": "pbkdf2_sha256$150000$GPTslnqCsCl4$uO2cci93A8BIq9+VZ1/pz9qUZl+1sLCAizNTBDjsNuk=",
-    "last_login": "2020-08-18T02:32:02.837Z",
-    "is_superuser": true,
-    "username": "admin",
-    "first_name": "",
-    "last_name": "",
-    "email": "admin@mail.com",
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2020-08-09T14:42:29.204Z",
-    "groups": [],
-    "user_permissions": []
+    "name": "Team Leader Test Project",
+    "description": "Team Leader Test Project Team Leader Test Project Team Leader Test Project",
+    "start_date": "2020-09-22",
+    "end_date": "2020-10-01",
+    "user": [
+      10
+    ]
+  }
+},
+{
+  "model": "webapp.project",
+  "pk": 15,
+  "fields": {
+    "name": "Test manager",
+    "description": "sadasdas[dkaspodjpaosdkpoasdm",
+    "start_date": "2020-09-30",
+    "end_date": "2020-10-03",
+    "user": [
+      9,
+      10
+    ]
   }
 }
 ]
