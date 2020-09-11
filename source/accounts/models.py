@@ -5,7 +5,6 @@ from django.contrib.auth.models import AbstractUser
 from django.utils.timezone import now
 from datetime import timedelta
 
-
 TOKEN_TYPE_REGISTER = 'register'
 TOKEN_TYPE_PASSWORD_RESET = 'password_reset'
 TOKEN_TYPE_CHOICES = (
@@ -39,3 +38,18 @@ class AuthToken(models.Model):
     class Meta:
         verbose_name = 'Аутентификационный токен'
         verbose_name_plural = 'Аутентификационные токены'
+
+
+class Profile(models.Model):
+    user: AbstractUser = models.OneToOneField(get_user_model(), related_name='profile', on_delete=models.CASCADE,
+                                              verbose_name='Пользователь')
+    avatar = models.ImageField(null=True, blank=True, upload_to='user_pics', verbose_name='Аватар')
+    github_profile = models.URLField(null=True, blank=True, verbose_name='Профиль на GitHub')
+    about_self = models.CharField(null=True, blank=True, max_length=2000, verbose_name='О себе')
+
+    def __str__(self):
+        return self.user.get_full_name() + "'s Profile"
+
+    class Meta:
+        verbose_name = 'Профиль'
+        verbose_name_plural = 'Профили'
