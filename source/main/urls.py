@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 from webapp.views import IndexView, IssueCreateView, IssueView, \
     IssueUpdateView, IssueDeleteView, ProjectIndexView, ProjectView, ProjectCreateView, ProjectUpdateView, \
-    ProjectDeleteView, UserAddView
+    ProjectDeleteView, UserAddView, project_mass_action_view
 
 from django.contrib.auth.views import LoginView, LogoutView
 
@@ -39,6 +39,7 @@ urlpatterns = [
         path('add/', ProjectCreateView.as_view(), name='project_create'),
         path('<int:pk>/update/', ProjectUpdateView.as_view(), name='project_update'),
         path('<int:pk>/delete/', ProjectDeleteView.as_view(), name='project_delete'),
+        path('mass-action/', project_mass_action_view, name='project_mass_action'),
         path('<int:pk>/user/add', UserAddView.as_view(), name='add_user')
     ])),
 

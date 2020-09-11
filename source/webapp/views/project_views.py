@@ -1,8 +1,9 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.core.paginator import Paginator
 from django.db.models import Q
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.utils.http import urlencode
 from django.views.generic import DetailView, UpdateView, DeleteView, ListView, CreateView
 from django.urls import reverse, reverse_lazy
@@ -45,6 +46,15 @@ class ProjectIndexView(ListView):
         if self.form.is_valid():
             return self.form.cleaned_data['search']
         return None
+
+
+@login_required
+def project_mass_action_view(request):
+    if request.method == 'POST':
+        ids = request.POST.getlist('selected_projects', [])
+        if 'delete' in request.POST:
+            Project.objects.filter(id__in=ids).delete()
+    return redirect('index')
 
 
 class ProjectView(DetailView):

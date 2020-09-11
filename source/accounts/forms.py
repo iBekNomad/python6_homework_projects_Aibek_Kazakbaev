@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django import forms
 from django.core.exceptions import ValidationError
 
+from accounts.models import Profile
+
 
 class MyUserCreationForm(UserCreationForm):
     first_name = forms.CharField(max_length=20, required=False, label='First name')
@@ -27,3 +29,11 @@ class MyUserCreationForm(UserCreationForm):
             return cleaned_data
         if errors:
             raise ValidationError(errors)
+
+
+class ProfileForm(forms.ModelForm):
+    about_self = forms.CharField(required=False, max_length=2000, widget=forms.Textarea)
+
+    class Meta:
+        model = Profile
+        fields = ['avatar', 'github_profile', 'about_self']

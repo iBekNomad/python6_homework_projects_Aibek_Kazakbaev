@@ -1,0 +1,32 @@
+{% if is_paginated %}
+    {% include 'partial/pagination.html' %}
+{% endif %}
+
+<form action="{% url "project_mass_action" %}" method="post">
+    {% csrf_token %}
+    <p class="mass-actions"><input type="submit" name="delete" value="Delete selected"></p>
+    {% for project in projects %}
+        <div class="box">
+            <h3><a href="{% url "project_view" project.pk %}">{{ project.name }}</a></h3>
+            <p>
+                <label for="selected_projects-{{ project.pk }}">Select:</label>
+                <input type="checkbox" name="selected_articles"
+                       id="selected_projects-{{ project.pk }}" value="{{ project.pk }}">
+            </p>
+            <p>Дата создания проекта: {{ project.start_date|date:"d.m.Y" }}
+            </p>
+            {% if perms.webapp.change_project or request.user in project.user.all %}
+                <p><a href="{% url 'project_update' project.pk %}">Update</a></p>
+            {% endif %}
+            {% if perms.webapp.delete_project or request.user in project.user.all %}
+                <p><a href="{% url 'project_delete' project.pk %}">Delete</a></p>
+            {% endif %}
+        </div>
+    {% empty %}
+        <h2 class="text-center">Нет проектов</h2>
+    {% endfor %}
+</form>
+
+{% if is_paginated %}
+    {% include 'partial/pagination.html' %}
+{% endif %}
