@@ -16,7 +16,7 @@ class ProfileForm(forms.ModelForm):
         fields = ['avatar', 'github_profile', 'about_self']
 
 
-class MyUserCreationForm(UserCreationForm, ProfileForm):
+class MyUserCreationForm(UserCreationForm):
     first_name = forms.CharField(max_length=20, required=False, label='First name')
     last_name = forms.CharField(max_length=25, required=False, label='Last name')
     email = forms.EmailField(max_length=30, required=True, label='e-mail')
