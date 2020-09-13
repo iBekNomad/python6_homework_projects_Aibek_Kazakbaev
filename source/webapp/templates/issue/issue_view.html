@@ -23,6 +23,12 @@
         <p class="d-flex justify-content-end"><span class="text-info pr-1">Project:</span> <a
                 href="{% url 'project_view' issue.project.pk %}"
                 class="text-decoration-none text-success font-weight-bold">{{ issue.project.name }}</a></p>
+        <p class="text-success">Users: </p>
+        {% for user in issue.project.user.all %}
+            <a href="{% url 'accounts:detail' user.pk %}"
+               class="text-decoration-none text-info">
+                <h5 class="font-weight-bold">{{ user.get_full_name }}</h5></a>
+        {% endfor %}
     </div>
 
 {% endblock %}
