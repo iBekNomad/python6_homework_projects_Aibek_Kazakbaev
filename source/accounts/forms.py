@@ -6,7 +6,17 @@ from django.core.exceptions import ValidationError
 from accounts.models import Profile
 
 
-class MyUserCreationForm(UserCreationForm):
+class ProfileForm(forms.ModelForm):
+    about_self = forms.CharField(required=False, max_length=2000, widget=forms.Textarea, label='О себе')
+    avatar = forms.ImageField(required=False, label='avatar')
+    github_profile = forms.URLField(required=False, label='Профиль на GitHub')
+
+    class Meta:
+        model = Profile
+        fields = ['avatar', 'github_profile', 'about_self']
+
+
+class MyUserCreationForm(UserCreationForm, ProfileForm):
     first_name = forms.CharField(max_length=20, required=False, label='First name')
     last_name = forms.CharField(max_length=25, required=False, label='Last name')
     email = forms.EmailField(max_length=30, required=True, label='e-mail')
@@ -29,11 +39,3 @@ class MyUserCreationForm(UserCreationForm):
             return cleaned_data
         if errors:
             raise ValidationError(errors)
-
-
-class ProfileForm(forms.ModelForm):
-    about_self = forms.CharField(required=False, max_length=2000, widget=forms.Textarea)
-
-    class Meta:
-        model = Profile
-        fields = ['avatar', 'github_profile', 'about_self']

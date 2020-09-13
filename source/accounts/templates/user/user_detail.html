@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Пользователь{% endblock %}
+
+{% block menu_links %}
+    <li><a href="#">Редактировать</a></li>
+    <li><a href="#">Смена пароля</a></li>
+{% endblock %}
+
+{% block content %}
+    <h2 class="d-flex justify-content-center amatic-text text-success font-weight-bold">Личная страница
+        пользователя</h2>
+    <h1 class="d-flex justify-content-center amatic-text text-info font-weight-bold">
+        {{ user_obj.get_full_name|default:user_obj.username }}</h1>
+    {% if user_obj.profile.avatar %}
+        <img class="avatar" src="{{ user_obj.profile.avatar.url }}" width="250" height="250" alt="user picture">
+    {% endif %}
+    <p class="text-success font-weight-bold d-inline-block pr-2">Имя пользователя: <h5 class="font-weight-bold text-info d-inline-block">{{ user_obj.username }}</h5></p>
+    <p class="text-success font-weight-bold d-inline-block pr-2">Имя: <h5 class="font-weight-bold text-info d-inline-block">{{ user_obj.first_name }}</h5></p>
+    <p class="text-success font-weight-bold d-inline-block pr-2">Фамилия: <h5 class="font-weight-bold text-info d-inline-block">{{ user_obj.last_name }}</h5></p>
+    <p class="text-success font-weight-bold d-inline-block pr-2">О себе: <h5 class="font-weight-bold text-info d-inline-block">{{ user_obj.profile.about_self }}</h5></p>
+    <p class="text-success font-weight-bold d-inline-block pr-2">Страница на GitHub: <h5 class="font-weight-bold text-info d-inline-block"><a href="{{ user_obj.profile.github_profile }}">{{ user_obj.profile.github_profile }}</a></h5></p>
+    <p class="text-success font-weight-bold d-inline-block pr-2">Почта: <h5 class="font-weight-bold text-info d-inline-block">{{ user_obj.email }}</h5></p>
+    <h2 class="text-center clear text-success font-weight-bold amatic-text">Проекты:</h2>
+    {% include 'partial/project_list.html' %}
+{% endblock %}
