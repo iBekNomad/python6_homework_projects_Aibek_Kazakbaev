@@ -4,26 +4,30 @@
 
 <form action="{% url "project_mass_action" %}" method="post">
     {% csrf_token %}
-    <p class="mass-actions"><input type="submit" name="delete" value="Delete selected"></p>
+    {% if perms.webapp.delete_project %}
+        <p class="mass-actions"><input type="submit" name="delete" value="Delete selected"></p>
+    {% endif %}
     {% for project in projects %}
         <div class="box border-info text-center">
             <h3><a href="{% url "project_view" project.pk %}">{{ project.name }}</a></h3>
-            <p>
-                <label for="selected_projects-{{ project.pk }}" class="text-success font-weight-bold">Select:</label>
-                <input type="checkbox" name="selected_articles"
-                       id="selected_projects-{{ project.pk }}" value="{{ project.pk }}">
-            </p>
+            {% if perms.webapp.delete_project %}
+                <p>
+                    <label for="selected_projects-{{ project.pk }}" class="text-success font-weight-bold">Select:</label>
+                    <input type="checkbox" name="selected_articles"
+                           id="selected_projects-{{ project.pk }}" value="{{ project.pk }}">
+                </p>
+            {% endif %}
             <p class="text-success font-weight-bold">Дата создания проекта: {{ project.start_date|date:"d.m.Y" }}
             </p>
-            {% if perms.webapp.change_project or request.user in project.user.all %}
+            {% if perms.webapp.change_project %}
                 <p class="font-weight-bold"><a href="{% url 'project_update' project.pk %}">Update</a></p>
             {% endif %}
-            {% if perms.webapp.delete_project or request.user in project.user.all %}
+            {% if perms.webapp.delete_project %}
                 <p class="font-weight-bold"><a href="{% url 'project_delete' project.pk %}">Delete</a></p>
             {% endif %}
         </div>
     {% empty %}
-        <h2 class="text-center">Нет проектов</h2>
+        <h2 class="text-center clear text-success font-weight-bold amatic-text">Нет проектов</h2>
     {% endfor %}
 </form>
 
