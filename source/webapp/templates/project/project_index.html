@@ -28,8 +28,14 @@
                         <p class="card-text">{{ project.description }}</p>
                     </div>
                     <div class="card-footer bg-transparent border-info">
-                        <p class="text-secondary">Start date: {{ project.start_date|date:"d.m.Y" }}</p>
-                        <p class="text-secondary">End date: {{ project.end_date|date:"d.m.Y" }}</p>
+                        <p class="text-secondary d-inline-block">Start date: {{ project.start_date|date:"d.m.Y" }}</p>
+                        <p class="text-secondary d-inline-block">End date: {{ project.end_date|date:"d.m.Y" }}</p>
+                        <p class="text-secondary">Users: </p>
+                        {% for user in project.user.all %}
+                            <a href="{% url 'accounts:detail' user.pk %}"
+                               class="text-decoration-none font-weight-bold text-info">
+                                <h5>{{ user.get_full_name }} |</h5></a>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
