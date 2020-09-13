@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.core.exceptions import PermissionDenied
 from django.db.models import Q
 from django.shortcuts import redirect, get_object_or_404
 from django.utils.http import urlencode
@@ -81,7 +82,8 @@ class IssueUpdateView(PermissionRequiredMixin, UpdateView):
 
     def has_permission(self):
         issue = self.get_object()
-        return super().has_permission() and self.request.user in issue.project.user.all()
+        if self.request.user in issue.project.user.all():
+            return super().has_permission()
 
     def get_success_url(self):
         return reverse('issue_view', kwargs={'pk': self.object.pk})
@@ -95,4 +97,5 @@ class IssueDeleteView(PermissionRequiredMixin, DeleteView):
 
     def has_permission(self):
         issue = self.get_object()
-        return super().has_permission() and self.request.user in issue.project.user.all()
+        if self.request.user in issue.project.user.all():
+            return super().has_permission()
