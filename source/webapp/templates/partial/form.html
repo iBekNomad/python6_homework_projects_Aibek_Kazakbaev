@@ -1,6 +1,7 @@
-<form action="{{ action_url }}" method="{{ form_method }}">
+{% if not fields_only %}
+<form action="{{ action_url }}" method="{{ form_method }}" enctype="{{ enctype }}">
     {% csrf_token %}
-
+{% endif %}
     {% for error in form.non_field_errors %}
         <p class="error">{{ error }}</p>
     {% endfor %}
@@ -9,7 +10,9 @@
         {% include 'partial/form_field.html' %}
     {% endfor %}
 
+{% if not fields_only %}
     <br/>
     <input type="submit" value="{{ button_text|default:"Submit" }}" class="btn btn-info text-uppercase"/>
     <p></p>
 </form>
+{% endif %}

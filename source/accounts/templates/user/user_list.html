@@ -2,9 +2,9 @@
 
 {% block title %}Пользователь{% endblock %}
 
-{#{% block menu_links %}#}
-{#    #}
-{#{% endblock %}#}
+{% block menu %}
+    <li class="d-inline-block float-right">{% include 'partial/simple_search.html' %}</li>
+{% endblock %}
 
 {% block content %}
     {% for user in users %}
