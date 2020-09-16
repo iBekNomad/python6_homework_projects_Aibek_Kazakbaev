@@ -4,8 +4,10 @@
 
 {% block menu %}
     {% if request.user == user_obj %}
-        <li><a href="{% url "accounts:detail" user_obj.pk %}" class="font-weight-bold text-decoration-none">Cancel</a></li>
-        <li><a href="{% url "accounts:password_change" user_obj.pk %}" class="font-weight-bold text-decoration-none">Change Password</a></li>
+        <li><a href="{% url "accounts:detail" user_obj.pk %}" class="font-weight-bold text-decoration-none">Cancel</a>
+        </li>
+        <li><a href="{% url "accounts:password_change" user_obj.pk %}" class="font-weight-bold text-decoration-none">Change
+            Password</a></li>
     {% endif %}
 {% endblock %}
 
@@ -17,6 +19,8 @@
         {% include 'partial/form.html' with form=profile_form fields_only=True %}
         <br>
         <input class="btn btn btn-info font-weight-bold text-uppercase" type="submit" value="Submit">
+        <a href="{% url "accounts:detail" user_obj.pk %}"
+           class="text-uppercase font-weight-bold text-decoration-none btn btn btn-info ml-5">Cancel</a>
     </form>
     <p></p>
 {% endblock %}
