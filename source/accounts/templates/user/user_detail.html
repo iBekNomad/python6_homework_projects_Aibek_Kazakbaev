@@ -3,9 +3,11 @@
 {% block title %}Пользователь{% endblock %}
 
 {% block menu %}
-    <li><a href="{% url 'accounts:change' user_obj.pk %}"
-           class="text-uppercase font-weight-bold text-decoration-none">Edit</a></li>
-    <li><a href="#">Смена пароля</a></li>
+    {% if request.user == user_obj %}
+        <li><a href="{% url 'accounts:change' user_obj.pk %}"
+               class="font-weight-bold text-decoration-none">Edit</a></li>
+        <li><a href="{% url "accounts:password_change" user_obj.pk %}">Change Password</a></li>
+    {% endif %}
 {% endblock %}
 
 {% block content %}

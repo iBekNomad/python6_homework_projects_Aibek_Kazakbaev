@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -8,7 +8,7 @@ from django.contrib.auth import login, get_user_model
 from django.urls import reverse
 from django.utils.http import urlencode
 
-from accounts.forms import MyUserCreationForm, UserChangeForm, ProfileChangeForm
+from accounts.forms import MyUserCreationForm, UserChangeForm, ProfileChangeForm, PasswordChangeForm
 from django.views.generic import CreateView, View, DetailView, ListView, UpdateView
 
 from accounts.models import AuthToken
@@ -101,11 +101,14 @@ class UserIndexView(ListView, PermissionRequiredMixin):
         return None
 
 
-class UserChangeView(UpdateView):
+class UserChangeView(UserPassesTestMixin, UpdateView):
     model = get_user_model()
     form_class = UserChangeForm
     template_name = 'user/user_change.html'
     context_object_name = 'user_obj'
+
+    def test_func(self):
+        return self.request.user == self.get_object()
 
     def get_context_data(self, **kwargs):
         if 'profile_form' not in kwargs:
@@ -139,3 +142,16 @@ class UserChangeView(UpdateView):
 
     def get_success_url(self):
         return reverse('accounts:detail', kwargs={'pk': self.object.pk})
+
+
+class UserPasswordChangeView(UserPassesTestMixin, UpdateView):
+    model = get_user_model()
+    template_name = 'user/user_password_change.html'
+    form_class = PasswordChangeForm
+    context_object_name = 'user_obj'
+
+    def test_func(self):
+        return self.request.user == self.get_object()
+
+    def get_success_url(self):
+        return reverse('accounts:login')

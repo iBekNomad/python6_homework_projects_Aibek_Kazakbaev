@@ -85,10 +85,14 @@ class ProjectView(DetailView):
             return issues, None, False
 
 
-class ProjectCreateView(LoginRequiredMixin, CreateView):
+class ProjectCreateView(PermissionRequiredMixin, CreateView):
     template_name = 'project/project_create.html'
     form_class = ProjectForm
     model = Project
+    permission_required = 'webapp.add_project'
+
+    def has_permission(self):
+        return super().has_permission()
 
     def form_valid(self, form):
         user = get_user_model().objects.filter(pk=self.request.user.pk)

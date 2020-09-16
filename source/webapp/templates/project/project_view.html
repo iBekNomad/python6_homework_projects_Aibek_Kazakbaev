@@ -3,12 +3,12 @@
 {% block title %}View{% endblock %}
 
 {% block menu %}
-    {% if perms.webapp.change_project %}
+    {% if perms.webapp.change_project and request.user in project.user.all %}
         <li><a href="{% url 'project_update' project.pk %}" class="text-uppercase text-decoration-none">Update
             Project</a>
         </li>
     {% endif %}
-    {% if perms.webapp.delete_project %}
+    {% if perms.webapp.delete_project and request.user in project.user.all %}
         <li><a href="{% url 'project_delete' project.pk %}" class="text-uppercase text-decoration-none">Delete
             Project</a>
         </li>
@@ -50,10 +50,10 @@
                 <p class="d-flex justify-content-center text-secondary">Created
                     date: {{ issue.create_at|date:"d.m.Y" }}</p>
                 <div class="d-flex justify-content-center">
-                    {% if perms.webapp.change_issue %}
+                    {% if perms.webapp.change_issue and request.user in project.user.all %}
                         <p><a href="{% url "issue_update" issue.pk %}" class="btn btn-sm btn-info ml-2">Update</a></p>
                     {% endif %}
-                    {% if perms.webapp.delete_issue %}
+                    {% if perms.webapp.delete_issue and request.user in project.user.all %}
                         <p><a href="{% url "issue_delete" issue.pk %}" class="btn btn-sm btn-info ml-2">Delete</a></p>
                     {% endif %}
                 </div>

@@ -3,10 +3,10 @@
 {% block title %}View{% endblock %}
 
 {% block menu %}
-    {% if perms.webapp.change_issue %}
+    {% if perms.webapp.change_issue and request.user in project.user.all %}
         <li><a href="{% url 'issue_update' issue.pk %}" class="text-uppercase text-decoration-none">Update</a></li>
     {% endif %}
-    {% if perms.webapp.delete_issue %}
+    {% if perms.webapp.delete_issue and request.user in project.user.all %}
         <li><a href="{% url 'issue_delete' issue.pk %}" class="text-uppercase text-decoration-none">Delete</a></li>
     {% endif %}
 {% endblock %}
