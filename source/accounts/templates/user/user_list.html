@@ -7,23 +7,25 @@
 {% endblock %}
 
 {% block content %}
-    {% for user in users %}
-        <div class="box text-info d-md-inline-block w-100">
-            <h1 class="d-flex justify-content-center amatic-text text-info font-weight-bold"><a
-                    href="{% url 'accounts:detail' user.pk %}"
-                    class="text-decoration-none text-info">{{ user.profile }}</a>
-            </h1>
-            {% if user.profile.avatar %}
-                <img class="h-auto d-inline-block float-right" src="{{ user.profile.avatar.url }}" width="250" height="250" alt="user picture">
-            {% endif %}
-            <div class="">
-                <p class="text-success font-weight-bold d-inline-block pr-2">Имя пользователя: <h5
-                    class="font-weight-bold text-info d-inline-block">{{ user.username }}</h5></p>
-                <p class="text-success font-weight-bold d-inline-block pr-2">Имя: <h5
-                    class="font-weight-bold text-info d-inline-block">{{ user.first_name }}</h5></p>
-                <p class="text-success font-weight-bold d-inline-block pr-2">Фамилия: <h5
-                    class="font-weight-bold text-info d-inline-block">{{ user.last_name }}</h5></p>
+    {% if perms.accounts.can_view_users_list %}
+        {% for user in users %}
+            <div class="box text-info d-md-inline-block w-100">
+                <h1 class="d-flex justify-content-center amatic-text text-info font-weight-bold"><a
+                        href="{% url 'accounts:detail' user.pk %}"
+                        class="text-decoration-none text-info">{{ user.profile }}</a>
+                </h1>
+                {% if user.profile.avatar %}
+                    <img class="h-auto d-inline-block float-right" src="{{ user.profile.avatar.url }}" width="250" height="250" alt="user picture">
+                {% endif %}
+                <div class="">
+                    <p class="text-success font-weight-bold d-inline-block pr-2">Имя пользователя: <h5
+                        class="font-weight-bold text-info d-inline-block">{{ user.username }}</h5></p>
+                    <p class="text-success font-weight-bold d-inline-block pr-2">Имя: <h5
+                        class="font-weight-bold text-info d-inline-block">{{ user.first_name }}</h5></p>
+                    <p class="text-success font-weight-bold d-inline-block pr-2">Фамилия: <h5
+                        class="font-weight-bold text-info d-inline-block">{{ user.last_name }}</h5></p>
+                </div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    {% endif %}
 {% endblock %}

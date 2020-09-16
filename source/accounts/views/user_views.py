@@ -65,13 +65,15 @@ class UserDetailView(LoginRequiredMixin, DetailView):
         return super().get_context_data(**kwargs)
 
 
-class UserIndexView(ListView, PermissionRequiredMixin):
+class UserIndexView(ListView, UserPassesTestMixin):
     context_object_name = 'users'
-    model = User
+    model = get_user_model()
     template_name = 'user/user_list.html'
     paginate_by = 5
     paginate_orphans = 1
-    permission_required = 'view_profile'
+
+    def test_func(self):
+        return self.request.user.has_perm('accounts.can_view_users_list')
 
     def get(self, request, *args, **kwargs):
         self.form = self.get_search_form()
